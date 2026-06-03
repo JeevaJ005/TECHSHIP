@@ -1,42 +1,68 @@
-const studentList = [
-  { id: 101, name: "John", age: 20, course: "BCA", marks: 85 },
-  { id: 102, name: "Sarah", age: 19, course: "BSc CS", marks: 72 },
-  { id: 103, name: "Alex", age: 21, course: "BCA", marks: 95 },
-  { id: 104, name: "Maria", age: 20, course: "BCA", marks: 60 },
-  { id: 105, name: "David", age: 22, course: "BSc IT", marks: 78 }
-];
-
-//
-
-// 2. Average marks of each student
-studentList.forEach(s => {
-  console.log(`${s.name} Average: ${s.marks}`);
-});
-
-// 3. Students above 75
-const above75 = studentList.filter(s => s.marks > 75);
-console.log("Above 75:", above75);
-
-// 4. Highest scorer
-const topStudent = studentList.reduce((max, s) =>
-  s.marks > max.marks ? s : max
-);
-
-console.log("Top Student:", topStudent.name);
-
-// 5. Report
-console.log("===== STUDENT REPORT =====");
-
-studentList.forEach(s => {
-  const status =
-    s.marks >= 85 ? "Excellent" :
-    s.marks >= 70 ? "Good" : "Average";
-
-  console.log(`
-ID: ${s.id}
-Name: ${s.name}
-Course: ${s.course}
-Marks: ${s.marks}
-Status: ${status}
-  `);
-});
+const students = [{id: 100,
+        name: "JAIMOL",
+        age: 20,
+        course: "BACHELOR OF MEDICINE AND SURGERY",
+        marks: [92, 98, 90, 90, 90]},{
+        id: 101,
+        name: "JEEVA",
+        age: 21,
+        course: "Btech CSE",
+        marks: [80, 82, 75, 88, 80]},{
+        id: 102,
+        name: "JILL",
+        age: 21,
+        course: "LAW",
+        marks: [90, 90, 92, 45, 91]},{
+        id: 103,
+        name: "OLIVER",
+        age: 22,
+        course: "BTech AI/ML",
+        marks: [65, 70, 68, 72, 66]},
+    { id: 104,
+        name: "JENNIE",
+        age: 21,
+        course: "Bsc Nurse",
+        marks: [78, 80, 75, 82, 79]}];
+        // Calculate average for each student
+const studentAverages = students.map(student => {
+const total = student.marks.reduce(
+        (sum, mark) => sum + mark,
+        0);
+const average = total / student.marks.length;
+return {
+        ...student,
+        average: average};});
+// Students scoring above 75%
+const topStudents = studentAverages.filter(
+    student => student.average > 75);
+// Find top performer
+const topper = studentAverages.reduce(
+    (highest, student) =>
+        student.average > highest.average
+            ? student
+            : highest);
+console.log("=================================");
+console.log("STUDENT MANAGEMENT REPORT");
+console.log("=================================");
+// Display all students with report
+studentAverages.forEach(student => {let status;
+if (student.average >= 80) {
+        status = "Excellent";
+    } else if (student.average >= 70) {
+        status = "Good";
+    } else {
+        status = "Needs Improvement";}
+console.log(`ID: ${student.id}
+Name: ${student.name}
+Course: ${student.course}
+Average Marks: ${student.average.toFixed(2)}
+Status: ${status}`);});
+// Students above 75%
+console.log("---------------------------------");
+console.log("Students Scoring Above 75%:");
+topStudents.forEach(student => {console.log(`${student.name} - ${student.average.toFixed(2)}`);});
+// Top performer
+console.log("---------------------------------");
+console.log(`Top Performer: ${topper.name}`);
+console.log(`Highest Average: ${topper.average.toFixed(2)}`);
+console.log("=================================");

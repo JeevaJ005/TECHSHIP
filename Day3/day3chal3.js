@@ -1,11 +1,18 @@
-
 const employees = [
-  { name: "EMMA", department: "IT" },
-  { name: "BEN", department: "HR" },
-  { name: "CLEO PATRA", department: "IT" }
+    { name: "OLIVER", department: "IT" },
+    { name: "REGIE", department: "HR" },
+    { name: "JUSTIN", department: "IT" }
 ];
 
-console.log("All Employees:", employees.map(e => e.name));
+console.log("Employee Names:");
 
-const itEmployees = employees.filter(e => e.department === "IT");
-console.log("IT Department:", itEmployees);
+employees.forEach(emp => {
+    console.log(emp.name);
+});
+
+const itEmployees = employees.filter(
+    emp => emp.department === "IT"
+);
+
+console.log("IT Employees:");
+console.log(itEmployees);

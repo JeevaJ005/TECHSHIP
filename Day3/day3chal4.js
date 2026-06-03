@@ -1,16 +1,23 @@
 const studentProfile = {
-  name: "MONICA",
-  course: "BCA",
-  skills: ["JS", "React"]
+    personalInfo: {
+        name: "BRIAN",
+        age: 22
+    },
+    courseDetails: {
+        course: "BCA"
+    },
+    skills: ["HTML", "CSS", "JavaScript"]
 };
-
-const { name: sName, course: sCourse } = studentProfile;
-
-console.log(`Student ${sName} is enrolled in ${sCourse}`);
-
-const updatedProfile = {
-  ...studentProfile,
-  year: "2nd Year"
-};
-
-console.log(updatedProfile);
+const {
+    personalInfo: { name, age },
+    courseDetails: { course },
+    skills
+} = studentProfile;
+console.log(`
+Student Profile Summary
+-----------------------
+Name   : ${name}
+Age    : ${age}
+Course : ${course}
+Skills : ${skills.join(", ")}
+`);
