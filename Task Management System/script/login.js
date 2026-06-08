@@ -1,3 +1,4 @@
+
 const loginForm = document.getElementById("loginForm");
 const error = document.getElementById("error");
 

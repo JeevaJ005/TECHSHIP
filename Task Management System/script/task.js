@@ -1,15 +1,14 @@
-let tasks =
-JSON.parse(
-localStorage.getItem("tasks")
-) || [];
+const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+if (!currentUser) {
+    window.location.href = "index.html";
+}
+
+const taskKey = currentUser.email + "_tasks";
+let tasks = JSON.parse(localStorage.getItem(taskKey)) || [];
 
 function saveTasks(){
-
-localStorage.setItem(
-"tasks",
-JSON.stringify(tasks)
-);
-
+    localStorage.setItem(taskKey, JSON.stringify(tasks));
 }
 
 function displayTasks(data = tasks){
